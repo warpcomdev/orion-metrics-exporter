@@ -38,7 +38,7 @@ func (reply MetricsReply) WritePrometheus(w io.Writer) error {
 					sn = toSnakeCase(metricName)
 					snakeCased[metricName] = sn
 				}
-				if _, err := fmt.Fprintf(w, "orion_%s {service=\"%s\", subservice=\"%s\"} %f\n", sn, serviceName, subserviceName, metricValue); err != nil {
+				if _, err := fmt.Fprintf(w, "orion_%s{service=\"%s\",subservice=\"%s\"} %g\n", sn, serviceName, subserviceName, metricValue); err != nil {
 					return fmt.Errorf("failed to write metric to output: %w", err)
 				}
 			}
